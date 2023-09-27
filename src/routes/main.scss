@@ -1,0 +1,8 @@
+.bx--search-input, .bx--select-input {
+    border: 1px solid #D2D5DB !important;
+    border-radius: 8px !important;
+    height: 50px !important
+}
+select:not([size]) {
+    background-image: none !important;
+}

@@ -28,6 +28,7 @@
   },
   "type": "module",
   "dependencies": {
-    "carbon-components-svelte": "^0.80.0"
+    "carbon-components-svelte": "^0.80.0",
+    "sass": "^1.68.0"
   }
 }
