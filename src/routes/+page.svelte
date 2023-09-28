@@ -3,122 +3,6 @@
   import {onMount} from "svelte";
   import './main.scss';
 
-
-  // let rows = [
-  //   {
-  //     id: 14,
-  //     table_name: "ANIMASTER",
-  //     schema: "landing-zone-pr",
-  //     database_name: "ETL",
-  //     source_system: "PR",
-  //     active: "Y"
-  //   },
-  //   {
-  //     id: 193,
-  //     table_name: "BIAST ASSETNUMSYS",
-  //     schema: "landing-zone-ces",
-  //     database_name: "ETL",
-  //     source_system: "CES",
-  //     active: "Y"
-  //   },
-  //   {
-  //     id: 194,
-  //     table_name: "BiPRK FP RATING",
-  //     schema: "landing-zone-ces",
-  //     database_name: "ETL",
-  //     source_system: "PR",
-  //     active: "Y"
-  //   },
-  //   {
-  //     id: 523,
-  //     table_name: "CBPOR ENTITY LINK",
-  //     schema: "landing-zone-ces",
-  //     database_name: "ETL",
-  //     source_system: "PR",
-  //     active: "N"
-  //   },
-  //   {
-  //     id: 279,
-  //     table_name: "CES BIAST ASSETNUMSYS",
-  //     schema: "dlt",
-  //     database_name: "ETL",
-  //     source_system: "CES",
-  //     active: "N"
-  //   },
-  //   {
-  //     id: 236,
-  //     table_name: "CES BIAST ASSETNUMSYS",
-  //     schema: "cmp",
-  //     database_name: "ETL",
-  //     source_system: "CES",
-  //     active: "Y"
-  //   },
-  //   {
-  //     id: 633,
-  //     table_name: "ANIMASTER",
-  //     schema: "landing-zone-pr",
-  //     database_name: "ETL",
-  //     source_system: "PR",
-  //     active: "Y"
-  //   },
-  //   {
-  //     id: 721,
-  //     table_name: "ANIMASTER",
-  //     schema: "cmp",
-  //     database_name: "ETL",
-  //     source_system: "PR",
-  //     active: "N"
-  //   },
-  //   {
-  //     id: 543,
-  //     table_name: "ANIMASTER",
-  //     schema: "landing-zone-pr",
-  //     database_name: "ETL",
-  //     source_system: "PR",
-  //     active: "Y"
-  //   },
-  //   {
-  //     id: 111,
-  //     table_name: "ANIMASTER",
-  //     schema: "landing-zone-pr",
-  //     database_name: "ETL",
-  //     source_system: "CES",
-  //     active: "Y"
-  //   },
-  //   {
-  //     id: 114,
-  //     table_name: "ANIMASTER",
-  //     schema: "landing-zone-pr",
-  //     database_name: "ETL",
-  //     source_system: "PR",
-  //     active: "Y"
-  //   },
-  //   {
-  //     id: 134,
-  //     table_name: "ANIMASTER",
-  //     schema: "landing-zone-pr",
-  //     database_name: "ETL",
-  //     source_system: "PR",
-  //     active: "Y"
-  //   },
-
-  //   {
-  //     id: 154,
-  //     table_name: "ANIMASTER",
-  //     schema: "landing-zone-pr",
-  //     database_name: "ETL",
-  //     source_system: "PR",
-  //     active: "Y"
-  //   },
-  //   {
-  //     id: 164,
-  //     table_name: "ANIMASTER",
-  //     schema: "landing-zone-pr",
-  //     database_name: "ETL",
-  //     source_system: "PR",
-  //     active: "Y"
-  //   }
-  // ];
   let rows = [];
 
   let pageSize = 25;
@@ -255,7 +139,7 @@
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
+<section class="py-4">
   <h4 class="w-fit pt-6 mb-5">Table List</h4>
   {#if rows.length < 1}
     <DataTableSkeleton />
@@ -329,7 +213,8 @@
           </ToolbarContent>
         </Toolbar>
     </DataTable>
-    <PaginationNav 
+    <PaginationNav
+      class="flex justify-end items-end mt-3"
       shown={3} 
       total={totalPage} 
       bind:page 
