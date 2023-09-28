@@ -3,16 +3,20 @@
   import {onMount} from "svelte";
   import './main.scss';
 
-  let rows = [];
+  /**
+    * @type {any[]}
+  */
+  let rows= [];
 
   let pageSize = 25;
   let page = 1;
-  let filteredRowIds = [];
+  /**
+    * @type {any[]}
+  */
   let sourceData = [];
-  let totalCount;
+  let totalCount = 0;
   let totalPage = 0;
-  let selected = 25;
-  let sourceid;
+  let sourceid = 0;
   let isActive = 2;
   let value = "";
 
@@ -89,12 +93,18 @@
     }
     return result;
   }
+  /**
+    * @param {number} source_id
+  */
   function getSourceNameById(source_id) {
     for( let i = 0; i < sourceData.length;i++) {
       if(sourceData[i].source_id == source_id) return sourceData[i].source_name;
     }
     return '';
   }
+  /**
+    * @param {number | any} value
+  */
   async function changePageSize(value) {
     rows = [];
     pageSize = value;
@@ -105,27 +115,39 @@
     rows = [];
     rows = await loadData();
   }
+  /**
+    * @param {string | number} value
+  */
   async function changeSystemOpt(value) {
     rows = [];
     sourceid = getSourceIdByName(value);
     rows = await loadData();
   }
+  /**
+    * @param {string | number} value
+  */
   async function changeActiveOpt(value) {
     rows = [];
     isActive = value == 'Y' ? 1 : 0;
     if( value == "Active") isActive = 2;
     rows = await loadData();
   }
+  /**
+    * @param {KeyboardEvent} e
+  */
   async function searchText(e) {
     if(e.key != "Enter") return;
     rows = [];
     rows = await loadData();
   }
-  async function searchFullText(e) {
+  async function searchFullText() {
     value = "";
     rows = [];
     rows = await loadData();
   }
+  /**
+     * @param {string | number} name
+  */
   function getSourceIdByName(name) {
     for( let i = 0; i < sourceData.length;i++) {
       if(sourceData[i].source_name == name) return sourceData[i].source_id;
@@ -157,15 +179,13 @@
       {pageSize}
       {rows}
     >
-        <Toolbar class="mb-8">
-          <ToolbarContent class="flex-start">
-            <div class="flex justify-between w-full">
+            <div class="flex justify-between w-full mb-8">
               <div class="flex">
-                  <Search
-                    bind:value
-                    class="!w-[325px]"
-                    on:keydown={async (e)=> searchText(e)}
-                    on:click={async (e)=> searchFullText(e)}
+                <Search
+                  bind:value
+                  class="!w-[325px]"
+                  on:keydown={async (e)=> searchText(e)}
+                  on:click={async (e)=> searchFullText()}
                 />
                 <div>
                   <Select 
@@ -209,9 +229,6 @@
                 <span>of {totalCount} results</span>
               </div>
             </div>
-
-          </ToolbarContent>
-        </Toolbar>
     </DataTable>
     <PaginationNav
       class="flex justify-end items-end mt-3"
@@ -260,8 +277,4 @@
     background-color: white;
   }
 
-  /* Toolbar Content Style*/
-  :global(.bx--toolbar-content) {
-    justify-content: flex-start !important;
-  }
 </style>
